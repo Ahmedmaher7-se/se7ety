@@ -1,18 +1,20 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
   static late SharedPreferences pref;
-
-  static const String kUserData = 'userData';
-  static const String kWishlist = 'wishlist';
+  static const String onboradingSeen = 'onboardingSeen';
 
   static init() async {
     pref = await SharedPreferences.getInstance();
   }
 
+  static setOnboardingScreen() async {
+    await pref.setBool(onboradingSeen, true);
+  }
 
-
+  static bool isOnboardingScreen() {
+    return pref.getBool(onboradingSeen) ?? false;
+  }
 
   static saveData(String key, dynamic value) {
     if (value is int) {

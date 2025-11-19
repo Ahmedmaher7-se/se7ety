@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 
-class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({
+class PasswordTextFormField extends StatefulWidget {
+  const PasswordTextFormField({
     super.key,
-    this.hint,
+    this.hintText,
     this.validator,
     this.maxLines = 1,
     this.readOnly = false,
     this.onTap,
-    required this.controller,
+    required this.controller, this.prefixIcon,
   });
 
-  final String? hint;
+  final String? hintText;
   final int maxLines;
   final String? Function(String?)? validator;
   final TextEditingController controller;
   final bool readOnly;
   final Function()? onTap;
+  final Widget? prefixIcon;
 
   @override
-  State<PasswordTextField> createState() => _PasswordTextFieldState();
+  State<PasswordTextFormField> createState() => _PasswordTextFormFieldState();
 }
 
-class _PasswordTextFieldState extends State<PasswordTextField> {
+class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,8 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       maxLines: widget.maxLines,
       onTap: widget.onTap,
       decoration: InputDecoration(
-        hintText: widget.hint,
+        hintText: widget.hintText,
+        prefixIcon: widget.prefixIcon,
         suffixIcon: GestureDetector(
           onTap: () {
             setState(() {
@@ -44,7 +46,9 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Icon(_obscureText ? Icons.visibility : Icons.visibility_off )],
+            children: [
+              Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
+            ],
           ),
         ),
       ),
