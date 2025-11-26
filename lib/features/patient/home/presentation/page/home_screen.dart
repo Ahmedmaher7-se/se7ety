@@ -113,11 +113,11 @@ class _HomePageState extends State<PatientHomeScreen> {
                         icon: const Icon(Icons.search),
                         onPressed: () {
                           if (_doctorName.text.isNotEmpty) {
-                            // pushTo(
-                            //   context,
-                            //   Routes.homeSearch,
-                            //   extra: _doctorName.text,
-                            // );
+                            pushTo(
+                              context,
+                              Routes.homeSearch,
+                              extra: _doctorName.text,
+                            );
                           }
                         },
                       ),
@@ -126,11 +126,11 @@ class _HomePageState extends State<PatientHomeScreen> {
                   style: TextStyles.body,
                   onFieldSubmitted: (String value) {
                     if (_doctorName.text.isNotEmpty) {
-                      // pushTo(
-                      //   context,
-                      //   Routes.homeSearch,
-                      //   extra: _doctorName.text,
-                      // );
+                      pushTo(
+                        context,
+                        Routes.homeSearch,
+                        extra: _doctorName.text,
+                      );
                     }
                   },
                 ),
@@ -149,7 +149,7 @@ class _HomePageState extends State<PatientHomeScreen> {
                 style: TextStyles.title.copyWith(fontSize: 16),
               ),
               const SizedBox(height: 10),
-              // const TopRatedList(),
+              const TopRatedList(),
             ],
           ),
         ),

@@ -42,4 +42,13 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+
+     <queries>
+      <!-- If your app checks for call support -->
+       <intent>
+         <action android:name="android.intent.action.VIEW" />
+         <data android:scheme="tel" />
+       </intent>
+  
+</queries>
 </manifest>

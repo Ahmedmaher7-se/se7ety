@@ -26,13 +26,13 @@ class SpecialistsBanner extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  // pushTo(
-                  //   context,
-                  //   Routes.specializationSearch,
-                  //   extra: cards[index].name,
-                  // );
+                  pushTo(
+                    context,
+                    Routes.specializationSearch,
+                    extra: cards[index].name,
+                  );
                 },
-                child: ItemCardWidget(model: cards[index]),
+                child: ItemCardWidget(model: cards[index]), 
               );
             },
           ),

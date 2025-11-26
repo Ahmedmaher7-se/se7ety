@@ -7,9 +7,9 @@ import 'package:se7ety/core/utils/colors.dart';
 import 'package:se7ety/core/utils/text_styles.dart';
 import 'package:se7ety/features/auth/models/doctor_model.dart';
 
-class SpecializationSearchScreen extends StatelessWidget {
-  final String specialization;
-  const SpecializationSearchScreen({super.key, required this.specialization});
+class HomeSearchScreen extends StatelessWidget {
+  final String searchKey;
+  const HomeSearchScreen({super.key, required this.searchKey});
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +17,10 @@ class SpecializationSearchScreen extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: AppColors.whiteColor,
         backgroundColor: AppColors.primaryColor,
-        title: Text(specialization),
+        title: Text('ابحث عن دكتور'),
       ),
       body: FutureBuilder(
-        future: FirestoreServices.filterDoctorsBySpecialization(specialization),
+        future: FirestoreServices.getDoctorsByName(searchKey),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
@@ -37,6 +37,10 @@ class SpecializationSearchScreen extends StatelessWidget {
                         snapshot.data!.docs[index].data()
                             as Map<String, dynamic>,
                       );
+                      if (doctor.specialization == '' ||
+                          doctor.specialization == null) {
+                        return const SizedBox();
+                      }
                       return DoctorCard(doctor: doctor);
                     },
                   ),
